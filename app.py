@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-#from flask_cors import cross_origin
+from flask_cors import cross_origin
 import sklearn
 import pickle
 import pandas as pd
@@ -8,13 +8,13 @@ app = Flask(__name__)
 model = pickle.load(open("flight_rf.pkl", "rb"))
 
 @app.route("/")
-#@cross_origin()
+@cross_origin()
 def home():
     return render_template("home1.html")
 
    
 @app.route("/predict", methods = ["GET", "POST"])
-#@cross_origin()
+@cross_origin()
 def predict():
     if request.method == "POST":
         date_dep = request.form["Dep_Time"]            #   2021-01-15T08:12
